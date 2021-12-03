@@ -1,0 +1,21 @@
+---
+# run_netapp_cmd.yml - Run a command against a target NetApp cluster using ONTAP collection
+- hosts: localhost
+  gather_facts: false
+
+  collections:
+    - netapp.ontap
+  
+  tasks:
+  - name: run command
+    netapp.ontap.na_ontap_command:
+      username: "{{ sshusername }}"
+      password: "{{ sshuserpass }}"
+      hostname: "{{ sshhostname }}"
+      https: true
+      validate_certs: false
+      return_dict: true
+      command: ['version']
+    register: cmd_output
+
+  - debug: var=cmd_output.msg.stdout_lines
