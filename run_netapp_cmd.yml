@@ -9,9 +9,9 @@
   tasks:
   - name: run command
     netapp.ontap.na_ontap_command:
-      username: "{{ sshusername }}"
-      password: "{{ sshuserpass }}"
-      hostname: "{{ sshhostname }}"
+      username: "{{ netapp_username }}"
+      password: "{{ netapp_password }}"
+      hostname: "{{ netapp_hostname }}"
       https: true
       validate_certs: false
       return_dict: true
